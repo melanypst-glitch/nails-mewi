@@ -9,18 +9,20 @@
         :root {
             --rosa-mewi: #ffb7c5;
             --rosa-fuerte: #ff85a1;
-            --lila-mewi: #d8b4fe;
             --fondo: #fff5f7;
             --texto: #5d4d50;
         }
+
+        /* CONFIGURACIÓN PARA QUE NO SE PASE DE UNA HOJA */
+        @page { size: auto; margin: 0mm; }
 
         body { background: var(--fondo); font-family: 'Montserrat', sans-serif; color: var(--texto); padding: 15px; display: flex; flex-direction: column; align-items: center; }
         .contenedor-app { max-width: 450px; width: 100%; }
 
         .header-app { text-align: center; margin-bottom: 12px; }
-        .logo-peque { width: 85px; border-radius: 50%; border: 2px solid var(--rosa-mewi); box-shadow: 0 4px 10px rgba(255, 133, 161, 0.18); }
+        .logo-peque { width: 85px; height: 85px; border-radius: 50%; border: 3px solid var(--rosa-mewi); object-fit: cover; }
         
-        .slogan-inicio { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 22px; margin-top: 6px; font-weight: bold; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5); }
+        .slogan-inicio { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 24px; margin-top: 8px; font-weight: bold; }
 
         .formulario-mellow { 
             background: white; padding: 25px; border-radius: 30px; 
@@ -30,26 +32,27 @@
         
         input, select { 
             width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 15px; 
-            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 15px; color: var(--texto);
+            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 16px;
         }
 
         .btn-guardar { 
             width: 100%; padding: 16px; background: var(--rosa-fuerte); color: white; 
-            border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 14px;
+            border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 15px;
         }
 
-        .card { background: white; border-radius: 20px; padding: 18px; border-left: 8px solid var(--rosa-mewi); margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .btn-ticket { background: var(--fondo); color: var(--rosa-fuerte); border: 1px dashed var(--rosa-fuerte); padding: 12px; border-radius: 15px; font-size: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
+        .card { background: white; border-radius: 20px; padding: 18px; border-left: 8px solid var(--rosa-mewi); margin-bottom: 12px; }
+        .btn-ticket { background: var(--fondo); color: var(--rosa-fuerte); border: 2px dashed var(--rosa-fuerte); padding: 12px; border-radius: 15px; font-size: 13px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* --- DISEÑO DEL TICKET DE IMPRESIÓN (MÁS GRANDE) --- */
+        /* --- TICKET AJUSTADO PARA UNA SOLA HOJA --- */
         #ticket-imprimir { 
             display: none; 
-            width: 100mm; /* ANCHO AUMENTADO */
+            width: 120mm; 
             background: #fff0f3; 
-            color: #4a4a4a; 
-            padding: 35px; /* MÁS ESPACIO INTERNO */
-            border: 3px solid #ffb7c5;
-            border-radius: 25px;
+            color: #333; 
+            padding: 40px; 
+            border: 5px solid #ffb7c5;
+            border-radius: 35px;
+            box-sizing: border-box;
         }
         
         @media print {
@@ -57,22 +60,23 @@
             #ticket-imprimir, #ticket-imprimir * { visibility: visible; }
             #ticket-imprimir { 
                 display: block !important; 
-                position: absolute; left: 50%; top: 20px; 
+                position: absolute; left: 50%; top: 10mm; 
                 transform: translateX(-50%);
                 text-align: center;
+                page-break-inside: avoid;
             }
-            .t-header { font-family: 'Dancing Script', cursive; font-size: 42px; color: #ff85a1; margin-bottom: 5px; }
-            .t-slogan { font-family: 'Dancing Script', cursive; font-size: 20px; color: #ff85a1; margin-bottom: 15px; display: block; }
-            .t-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; display: block; opacity: 0.8; font-weight: bold; }
+            .t-header { font-family: 'Dancing Script', cursive; font-size: 55px; color: #ff85a1; margin-bottom: 5px; }
+            .t-slogan { font-family: 'Dancing Script', cursive; font-size: 24px; color: #ff85a1; margin-bottom: 20px; display: block; }
+            .t-sub { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px; display: block; font-weight: bold; }
             
             .t-datos { 
                 font-family: 'Courier Prime', monospace; 
                 text-align: left; 
-                font-size: 16px; /* LETRA MÁS GRANDE */
+                font-size: 20px; 
                 background: white; 
-                padding: 25px; 
-                border-radius: 15px;
-                border: 2px solid #ffdae0;
+                padding: 30px; 
+                border-radius: 20px;
+                border: 3px solid #ffdae0;
                 line-height: 1.8;
             }
 
@@ -80,13 +84,13 @@
                 display: flex; 
                 align-items: center; 
                 justify-content: center; 
-                margin-top: 25px; 
-                gap: 18px;
+                margin-top: 30px; 
+                gap: 25px;
             }
             
-            .t-imagen-final { width: 95px; height: 95px; border-radius: 15px; object-fit: cover; border: 2px solid #ffb7c5; }
-            .t-gracias { font-family: 'Dancing Script', cursive; font-size: 24px; color: #ff85a1; text-align: left; line-height: 1.2; }
-            .separador-corazon { color: #ffb7c5; margin: 15px 0; font-size: 18px; }
+            .t-imagen-final { width: 110px; height: 110px; border-radius: 20px; object-fit: cover; border: 3px solid #ffb7c5; }
+            .t-gracias { font-family: 'Dancing Script', cursive; font-size: 30px; color: #ff85a1; text-align: left; line-height: 1.1; }
+            .separador-corazon { color: #ffb7c5; margin: 20px 0; font-size: 25px; }
         }
     </style>
 </head>
@@ -95,13 +99,13 @@
 <div class="contenedor-app">
     <div class="header-app">
         <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="logo-peque">
-        <h1 style="font-size: 24px; color: var(--rosa-fuerte); margin: 8px 0 0 0;">Mellow Nails</h1>
+        <h1 style="font-size: 26px; color: var(--rosa-fuerte); margin: 8px 0 0 0;">Mellow Nails</h1>
         <div class="slogan-inicio">Uñitas tiernas para manos que brillan ✨💖</div>
     </div>
 
     <div class="formulario-mellow">
         <input type="text" id="nombre" placeholder="Nombre de la clienta">
-        <input type="text" id="ubicacion" placeholder="📍 Ubicación (Dirección o Local)">
+        <input type="text" id="ubicacion" placeholder="📍 Ubicación">
         <input type="datetime-local" id="fechaCita">
         <select id="sistema">
             <option value="Acrílico Escuplido">Acrílico Escuplido 💅</option>
@@ -137,8 +141,7 @@
             Gracias por<br>preferirnos,<br>¡te esperamos!
         </div>
     </div>
-    
-    <p style="font-size: 11px; margin-top: 20px; opacity: 0.6; font-family: sans-serif;">Mellow Nails Studio 🐭💅</p>
+    <p style="font-size: 13px; margin-top: 25px; opacity: 0.6;">Mellow Nails Studio 🐭💅</p>
 </div>
 
 <script>
@@ -156,20 +159,25 @@
         citas.sort((a, b) => new Date(a.fechaCita) - new Date(b.fechaCita));
         localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
         renderizar();
-        alert("¡Cita agendada con éxito! 🌸✨");
+        alert("¡Cita agendada! 🌸✨");
     }
 
     function imprimirTicket(id) {
         const c = citas.find(cita => cita.id === id);
-        const f = new Date(c.fechaCita);
+        
+        // PREGUNTA LA FECHA ANTES DE IMPRIMIR
+        const nuevaFechaFull = prompt("¿Confirmas la fecha y hora para el ticket?", c.fechaCita);
+        
+        if (nuevaFechaFull) {
+            const f = new Date(nuevaFechaFull);
+            document.getElementById('t-nombre').innerText = c.nombre.toUpperCase();
+            document.getElementById('t-fecha').innerText = f.toLocaleDateString();
+            document.getElementById('t-hora').innerText = f.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+            document.getElementById('t-sistema').innerText = c.sistema;
+            document.getElementById('t-lugar').innerText = c.ubicacion;
 
-        document.getElementById('t-nombre').innerText = c.nombre.toUpperCase();
-        document.getElementById('t-fecha').innerText = f.toLocaleDateString();
-        document.getElementById('t-hora').innerText = f.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-        document.getElementById('t-sistema').innerText = c.sistema;
-        document.getElementById('t-lugar').innerText = c.ubicacion;
-
-        setTimeout(() => { window.print(); }, 300);
+            setTimeout(() => { window.print(); }, 300);
+        }
     }
 
     function renderizar() {
@@ -179,17 +187,17 @@
             const f = new Date(c.fechaCita);
             lista.innerHTML += `
                 <div class="card">
-                    <p style="font-size:11px; color:var(--rosa-fuerte); font-weight:bold;">📅 ${f.toLocaleString()}</p>
-                    <h3 style="margin:5px 0; font-size:17px; color:var(--texto);">${c.nombre}</h3>
-                    <button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 Generar Ticket Rosado</button>
-                    <button style="color:#ffadad; border:none; background:none; font-size:11px; cursor:pointer; margin-top:7px;" onclick="borrar(${c.id})">Borrar registro</button>
+                    <p style="font-size:12px; color:var(--rosa-fuerte); font-weight:bold;">📅 ${f.toLocaleString()}</p>
+                    <h3 style="margin:5px 0; font-size:18px;">${c.nombre}</h3>
+                    <button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 GENERAR TICKET ÚNICO</button>
+                    <button style="color:#ffadad; border:none; background:none; font-size:12px; cursor:pointer; margin-top:10px;" onclick="borrar(${c.id})">Borrar</button>
                 </div>
             `;
         });
     }
 
     function borrar(id) {
-        if(confirm("¿Eliminar cita de la agenda? 🐭")) {
+        if(confirm("¿Borrar esta cita? 🐭")) {
             citas = citas.filter(c => c.id !== id);
             localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
             renderizar();
