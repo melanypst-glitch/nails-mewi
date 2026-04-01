@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Mellow Nails ✨</title>
+    <title>Mellow Nails Agenda ✨ Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Courier+Prime&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --rosa-mewi: #ffb7c5;
@@ -11,155 +12,184 @@
             --lila-mewi: #d8b4fe;
             --fondo: #fff5f7;
             --texto: #5d4d50;
-            --hoy-bg: #f3e8ff;
         }
 
-        body { background: var(--fondo); font-family: 'Segoe UI', sans-serif; color: var(--texto); padding: 15px; display: flex; flex-direction: column; align-items: center; }
-        .contenedor-app { max-width: 480px; width: 100%; }
+        body { background: var(--fondo); font-family: 'Montserrat', sans-serif; color: var(--texto); padding: 15px; display: flex; flex-direction: column; align-items: center; }
+        .contenedor-app { max-width: 450px; width: 100%; }
 
-        .header-app { text-align: center; margin-bottom: 15px; }
-        .logo-peque { width: 90px; border-radius: 15px; }
-
-        /* Formulario */
-        .formulario-mellow { 
-            background: white; padding: 20px; border-radius: 25px; 
-            box-shadow: 0 8px 20px rgba(255, 183, 197, 0.2); margin-bottom: 25px;
-        }
-        h2 { font-size: 14px; color: var(--rosa-fuerte); text-align: center; text-transform: uppercase; margin-top: 0; }
+        .header-app { text-align: center; margin-bottom: 12px; }
+        .logo-peque { width: 85px; border-radius: 50%; border: 2px solid var(--rosa-mewi); box-shadow: 0 4px 10px rgba(255, 133, 161, 0.18); }
         
-        input, select, textarea { 
-            width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 12px; 
-            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 14px;
+        .slogan-inicio { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 22px; margin-top: 6px; font-weight: bold; text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5); }
+
+        .formulario-mellow { 
+            background: white; padding: 25px; border-radius: 30px; 
+            box-shadow: 0 8px 25px rgba(255, 183, 197, 0.2); margin-top: 15px; margin-bottom: 25px;
+            border: 1px solid var(--rosa-mewi);
+        }
+        
+        input, select { 
+            width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 15px; 
+            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 15px; color: var(--texto);
         }
 
         .btn-guardar { 
-            width: 100%; padding: 14px; background: var(--rosa-fuerte); color: white; 
-            border: none; border-radius: 50px; font-weight: 800; cursor: pointer;
+            width: 100%; padding: 16px; background: var(--rosa-fuerte); color: white; 
+            border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; font-size: 14px;
         }
 
-        /* FILTROS DE AGENDA */
-        .filtros-agenda { display: flex; gap: 8px; margin-bottom: 15px; }
-        .btn-filtro { 
-            flex: 1; padding: 10px; border-radius: 12px; border: 2px solid var(--rosa-mewi);
-            background: white; color: var(--rosa-fuerte); font-weight: bold; cursor: pointer; font-size: 12px;
-        }
-        .btn-filtro.activo { background: var(--rosa-fuerte); color: white; border-color: var(--rosa-fuerte); }
+        .card { background: white; border-radius: 20px; padding: 18px; border-left: 8px solid var(--rosa-mewi); margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .btn-ticket { background: var(--fondo); color: var(--rosa-fuerte); border: 1px dashed var(--rosa-fuerte); padding: 12px; border-radius: 15px; font-size: 12px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* LISTA DE CITAS */
-        .lista-cards { display: flex; flex-direction: column; gap: 10px; }
-        .card { 
-            background: white; border-radius: 18px; padding: 15px; 
-            border-left: 6px solid var(--rosa-mewi); box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        /* --- DISEÑO DEL TICKET DE IMPRESIÓN (MÁS GRANDE) --- */
+        #ticket-imprimir { 
+            display: none; 
+            width: 100mm; /* ANCHO AUMENTADO */
+            background: #fff0f3; 
+            color: #4a4a4a; 
+            padding: 35px; /* MÁS ESPACIO INTERNO */
+            border: 3px solid #ffb7c5;
+            border-radius: 25px;
         }
-        .card.es-hoy { background: var(--hoy-bg); border-left-color: var(--lila-mewi); }
         
-        .card h3 { margin: 0; font-size: 16px; color: var(--rosa-fuerte); display: flex; justify-content: space-between; }
-        .info-cita { color: #7c3aed; font-weight: 800; font-size: 13px; margin: 8px 0; background: white; padding: 5px 10px; border-radius: 10px; display: inline-block; }
-        .detalles { font-size: 12px; opacity: 0.8; margin: 0; }
-        
-        .btn-borrar { color: #ffadad; border: none; background: none; font-size: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; padding: 0; }
+        @media print {
+            body * { visibility: hidden; }
+            #ticket-imprimir, #ticket-imprimir * { visibility: visible; }
+            #ticket-imprimir { 
+                display: block !important; 
+                position: absolute; left: 50%; top: 20px; 
+                transform: translateX(-50%);
+                text-align: center;
+            }
+            .t-header { font-family: 'Dancing Script', cursive; font-size: 42px; color: #ff85a1; margin-bottom: 5px; }
+            .t-slogan { font-family: 'Dancing Script', cursive; font-size: 20px; color: #ff85a1; margin-bottom: 15px; display: block; }
+            .t-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px; display: block; opacity: 0.8; font-weight: bold; }
+            
+            .t-datos { 
+                font-family: 'Courier Prime', monospace; 
+                text-align: left; 
+                font-size: 16px; /* LETRA MÁS GRANDE */
+                background: white; 
+                padding: 25px; 
+                border-radius: 15px;
+                border: 2px solid #ffdae0;
+                line-height: 1.8;
+            }
+
+            .t-footer-container { 
+                display: flex; 
+                align-items: center; 
+                justify-content: center; 
+                margin-top: 25px; 
+                gap: 18px;
+            }
+            
+            .t-imagen-final { width: 95px; height: 95px; border-radius: 15px; object-fit: cover; border: 2px solid #ffb7c5; }
+            .t-gracias { font-family: 'Dancing Script', cursive; font-size: 24px; color: #ff85a1; text-align: left; line-height: 1.2; }
+            .separador-corazon { color: #ffb7c5; margin: 15px 0; font-size: 18px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="contenedor-app">
     <div class="header-app">
-        <img src="https://i.postimg.cc/6pFYtnxR/file-00000000eb6c71f59137c9e2eacfeb07.png" class="logo-peque">
-        <h1 style="font-size: 20px; margin: 5px 0;">Agenda de Citas 🐭💅</h1>
+        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="logo-peque">
+        <h1 style="font-size: 24px; color: var(--rosa-fuerte); margin: 8px 0 0 0;">Mellow Nails</h1>
+        <div class="slogan-inicio">Uñitas tiernas para manos que brillan ✨💖</div>
     </div>
 
     <div class="formulario-mellow">
-        <h2>Nueva Cita</h2>
         <input type="text" id="nombre" placeholder="Nombre de la clienta">
-        <select id="sistema">
-            <option value="Acrílico">Acrílico</option>
-            <option value="Soft Gel">Soft Gel</option>
-            <option value="Polygel">Polygel</option>
-            <option value="Semipermanente">Semipermanente</option>
-        </select>
+        <input type="text" id="ubicacion" placeholder="📍 Ubicación (Dirección o Local)">
         <input type="datetime-local" id="fechaCita">
-        <textarea id="notas" placeholder="Diseño, largo o notas de salud..." rows="2"></textarea>
-        <button class="btn-guardar" onclick="guardarCita()">✨ AGENDAR CITA</button>
-    </div>
-
-    <div class="filtros-agenda">
-        <button class="btn-filtro activo" id="f-todas" onclick="filtrar('todas')">Todas</button>
-        <button class="btn-filtro" id="f-hoy" onclick="filtrar('hoy')">Hoy 📅</button>
-        <button class="btn-filtro" id="f-manana" onclick="filtrar('manana')">Mañana</button>
+        <select id="sistema">
+            <option value="Acrílico Escuplido">Acrílico Escuplido 💅</option>
+            <option value="Soft Gel">Soft Gel ✨</option>
+            <option value="Polygel">Polygel 🌸</option>
+            <option value="Semipermanente">Semipermanente 🎀</option>
+            <option value="Kapping">Kapping / Base Rubber 💎</option>
+        </select>
+        <button class="btn-guardar" onclick="guardarCita()">💖 Agendar Cita</button>
     </div>
 
     <div class="lista-cards" id="listaCitas"></div>
 </div>
 
+<div id="ticket-imprimir">
+    <div class="t-header">Mellow Nails</div>
+    <div class="t-slogan">"Uñitas tiernas para manos que brillan" ✨💖</div>
+    <span class="t-sub">Comprobante de Cita</span>
+    
+    <div class="separador-corazon">🌸 • 🎀 • 🌸</div>
+
+    <div class="t-datos">
+        <p><b>CLIENTA:</b> <span id="t-nombre"></span></p>
+        <p><b>FECHA:</b> <span id="t-fecha"></span></p>
+        <p><b>HORA:</b> <span id="t-hora"></span></p>
+        <p><b>SISTEMA:</b> <span id="t-sistema"></span></p>
+        <p><b>LUGAR:</b> <span id="t-lugar"></span></p>
+    </div>
+
+    <div class="t-footer-container">
+        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="t-imagen-final">
+        <div class="t-gracias">
+            Gracias por<br>preferirnos,<br>¡te esperamos!
+        </div>
+    </div>
+    
+    <p style="font-size: 11px; margin-top: 20px; opacity: 0.6; font-family: sans-serif;">Mellow Nails Studio 🐭💅</p>
+</div>
+
 <script>
     let citas = JSON.parse(localStorage.getItem('mellow_nails_agenda')) || [];
-    let filtroActual = 'todas';
 
     function guardarCita() {
         const nombre = document.getElementById('nombre').value;
-        const sistema = document.getElementById('sistema').value;
         const fechaCita = document.getElementById('fechaCita').value;
-        const notas = document.getElementById('notas').value;
+        const sistema = document.getElementById('sistema').value;
+        const ubicacion = document.getElementById('ubicacion').value || "Nuestro Studio 🎀";
 
-        if (!nombre || !fechaCita) return alert("Pon el nombre y la fecha 🐭");
+        if (!nombre || !fechaCita) return alert("¡Mel! No olvides el nombre o la fecha 🐭");
 
-        citas.push({ id: Date.now(), nombre, sistema, fechaCita, notas });
+        citas.push({ id: Date.now(), nombre, fechaCita, sistema, ubicacion });
         citas.sort((a, b) => new Date(a.fechaCita) - new Date(b.fechaCita));
-        
         localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
-        document.getElementById('nombre').value = "";
-        document.getElementById('fechaCita').value = "";
-        document.getElementById('notas').value = "";
         renderizar();
+        alert("¡Cita agendada con éxito! 🌸✨");
     }
 
-    function filtrar(tipo) {
-        filtroActual = tipo;
-        document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
-        document.getElementById('f-' + tipo).classList.add('activo');
-        renderizar();
+    function imprimirTicket(id) {
+        const c = citas.find(cita => cita.id === id);
+        const f = new Date(c.fechaCita);
+
+        document.getElementById('t-nombre').innerText = c.nombre.toUpperCase();
+        document.getElementById('t-fecha').innerText = f.toLocaleDateString();
+        document.getElementById('t-hora').innerText = f.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+        document.getElementById('t-sistema').innerText = c.sistema;
+        document.getElementById('t-lugar').innerText = c.ubicacion;
+
+        setTimeout(() => { window.print(); }, 300);
     }
 
     function renderizar() {
         const lista = document.getElementById('listaCitas');
         lista.innerHTML = "";
-        
-        const hoy = new Date();
-        const hoyStr = hoy.toISOString().split('T')[0];
-        
-        const manana = new Date();
-        manana.setDate(hoy.getDate() + 1);
-        const mananaStr = manana.toISOString().split('T')[0];
-
-        let filtradas = citas;
-        if (filtroActual === 'hoy') filtradas = citas.filter(c => c.fechaCita.startsWith(hoyStr));
-        if (filtroActual === 'manana') filtradas = citas.filter(c => c.fechaCita.startsWith(mananaStr));
-
-        if (filtradas.length === 0) {
-            lista.innerHTML = '<p style="text-align:center; opacity:0.5; font-size:13px;">No hay citas para mostrar 🐭</p>';
-            return;
-        }
-
-        filtradas.forEach(c => {
-            const fechaObj = new Date(c.fechaCita);
-            const esHoy = c.fechaCita.startsWith(hoyStr);
-            
+        citas.forEach(c => {
+            const f = new Date(c.fechaCita);
             lista.innerHTML += `
-                <div class="card ${esHoy ? 'es-hoy' : ''}">
-                    <h3>${c.nombre} <span>✨</span></h3>
-                    <div class="info-cita">
-                        ⏰ ${fechaObj.toLocaleDateString()} - ${fechaObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
-                    </div>
-                    <p class="detalles"><b>Sistema:</b> ${c.sistema}</p>
-                    <p class="detalles"><b>Notas:</b> ${c.notas || 'Sin notas'}</p>
-                    <button class="btn-borrar" onclick="borrarCita(${c.id})">ELIMINAR CITA</button>
+                <div class="card">
+                    <p style="font-size:11px; color:var(--rosa-fuerte); font-weight:bold;">📅 ${f.toLocaleString()}</p>
+                    <h3 style="margin:5px 0; font-size:17px; color:var(--texto);">${c.nombre}</h3>
+                    <button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 Generar Ticket Rosado</button>
+                    <button style="color:#ffadad; border:none; background:none; font-size:11px; cursor:pointer; margin-top:7px;" onclick="borrar(${c.id})">Borrar registro</button>
                 </div>
             `;
         });
     }
 
-    function borrarCita(id) {
-        if(confirm("¿Borrar esta cita?")) {
+    function borrar(id) {
+        if(confirm("¿Eliminar cita de la agenda? 🐭")) {
             citas = citas.filter(c => c.id !== id);
             localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
             renderizar();
