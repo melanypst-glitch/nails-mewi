@@ -9,6 +9,7 @@
         :root {
             --rosa-mewi: #ffb7c5;
             --rosa-fuerte: #ff85a1;
+            --lila-mewi: #d8b4fe;
             --fondo: #fff5f7;
             --texto: #5d4d50;
         }
@@ -19,10 +20,18 @@
         body { background: var(--fondo); font-family: 'Montserrat', sans-serif; color: var(--texto); padding: 15px; display: flex; flex-direction: column; align-items: center; }
         .contenedor-app { max-width: 450px; width: 100%; }
 
-        .header-app { text-align: center; margin-bottom: 12px; }
-        .logo-peque { width: 85px; height: 85px; border-radius: 50%; border: 3px solid var(--rosa-mewi); object-fit: cover; }
+        .header-app { text-align: center; margin-bottom: 15px; }
         
-        .slogan-inicio { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 24px; margin-top: 8px; font-weight: bold; }
+        /* LOGO AESTHETIC EN INICIO CON BORDE Y SOMBRA */
+        .logo-inicio { 
+            width: 120px; height: 120px; border-radius: 50%; 
+            border: 5px solid var(--rosa-mewi); 
+            object-fit: cover; 
+            box-shadow: 0 8px 15px rgba(255, 183, 197, 0.4); 
+            margin-bottom: 10px;
+        }
+        
+        .slogan-inicio { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 26px; margin-top: 8px; font-weight: bold; }
 
         .formulario-mellow { 
             background: white; padding: 25px; border-radius: 30px; 
@@ -32,26 +41,28 @@
         
         input, select { 
             width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 15px; 
-            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 16px;
+            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 16px; color: var(--texto);
         }
+        
+        label { font-size: 14px; color: var(--rosa-fuerte); font-weight: bold; margin-bottom: 5px; display: block; text-align: left; padding-left: 10px; }
 
         .btn-guardar { 
             width: 100%; padding: 16px; background: var(--rosa-fuerte); color: white; 
-            border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 15px;
+            border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 15px; letter-spacing: 1px;
         }
 
-        .card { background: white; border-radius: 20px; padding: 18px; border-left: 8px solid var(--rosa-mewi); margin-bottom: 12px; }
+        .card { background: white; border-radius: 20px; padding: 18px; border-left: 8px solid var(--rosa-mewi); margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
         .btn-ticket { background: var(--fondo); color: var(--rosa-fuerte); border: 2px dashed var(--rosa-fuerte); padding: 12px; border-radius: 15px; font-size: 13px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
 
-        /* --- TICKET AJUSTADO PARA UNA SOLA HOJA --- */
+        /* --- TICKET GIGANTE AJUSTADO PARA UNA SOLA HOJA --- */
         #ticket-imprimir { 
             display: none; 
-            width: 120mm; 
+            width: 130mm; /* Súper ancho para que se vea grande */
             background: #fff0f3; 
             color: #333; 
-            padding: 40px; 
+            padding: 50px; 
             border: 5px solid #ffb7c5;
-            border-radius: 35px;
+            border-radius: 40px;
             box-sizing: border-box;
         }
         
@@ -65,32 +76,35 @@
                 text-align: center;
                 page-break-inside: avoid;
             }
-            .t-header { font-family: 'Dancing Script', cursive; font-size: 55px; color: #ff85a1; margin-bottom: 5px; }
-            .t-slogan { font-family: 'Dancing Script', cursive; font-size: 24px; color: #ff85a1; margin-bottom: 20px; display: block; }
-            .t-sub { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px; display: block; font-weight: bold; }
+            .t-header { font-family: 'Dancing Script', cursive; font-size: 65px; color: #ff85a1; margin-bottom: 10px; }
+            .t-slogan { font-family: 'Dancing Script', cursive; font-size: 28px; color: #ff85a1; margin-bottom: 25px; display: block; }
+            .t-sub { font-size: 14px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 30px; display: block; font-weight: bold; }
             
             .t-datos { 
                 font-family: 'Courier Prime', monospace; 
                 text-align: left; 
-                font-size: 20px; 
+                font-size: 22px; /* Letra muy grande */
                 background: white; 
-                padding: 30px; 
-                border-radius: 20px;
+                padding: 40px; 
+                border-radius: 25px;
                 border: 3px solid #ffdae0;
-                line-height: 1.8;
+                line-height: 2;
             }
+            .t-whatsapp { color: #25D366; font-weight: bold; font-family: sans-serif; } /* Color WhatsApp */
+            .t-domicilio { color: #be185d; font-weight: bold; } /* Color Domicilio */
 
             .t-footer-container { 
                 display: flex; 
                 align-items: center; 
                 justify-content: center; 
-                margin-top: 30px; 
-                gap: 25px;
+                margin-top: 40px; 
+                gap: 30px;
             }
             
-            .t-imagen-final { width: 110px; height: 110px; border-radius: 20px; object-fit: cover; border: 3px solid #ffb7c5; }
-            .t-gracias { font-family: 'Dancing Script', cursive; font-size: 30px; color: #ff85a1; text-align: left; line-height: 1.1; }
-            .separador-corazon { color: #ffb7c5; margin: 20px 0; font-size: 25px; }
+            /* IMAGEN FINAL EN TICKET GRANDE Y CENTRADA */
+            .t-imagen-final { width: 150px; height: 150px; border-radius: 20px; object-fit: cover; border: 4px solid #ffb7c5; }
+            .t-gracias { font-family: 'Dancing Script', cursive; font-size: 38px; color: #ff85a1; text-align: left; line-height: 1.1; }
+            .separador-corazon { color: #ffb7c5; margin: 25px 0; font-size: 30px; }
         }
     </style>
 </head>
@@ -98,22 +112,40 @@
 
 <div class="contenedor-app">
     <div class="header-app">
-        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="logo-peque">
-        <h1 style="font-size: 26px; color: var(--rosa-fuerte); margin: 8px 0 0 0;">Mellow Nails</h1>
+        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="logo-inicio">
+        <h1 style="font-size: 28px; color: var(--rosa-fuerte); margin: 10px 0 0 0; font-weight: bold;">Mellow Nails</h1>
         <div class="slogan-inicio">Uñitas tiernas para manos que brillan ✨💖</div>
     </div>
 
     <div class="formulario-mellow">
-        <input type="text" id="nombre" placeholder="Nombre de la clienta">
-        <input type="text" id="ubicacion" placeholder="📍 Ubicación">
+        <label>Nombre de la clienta</label>
+        <input type="text" id="nombre" placeholder="Ej: Ana Pérez">
+        
+        <label>Número de WhatsApp</label>
+        <input type="tel" id="whatsapp" placeholder="Ej: 3001234567" required>
+        
+        <label>📍 Ubicación (Dirección o Local)</label>
+        <input type="text" id="ubicacion" placeholder="Ej: Calle 10 #20-30">
+        
+        <label>📅 Fecha y Hora de la Cita</label>
         <input type="datetime-local" id="fechaCita">
+        
+        <label>💖 Tipo de Atención</label>
+        <select id="atencion">
+            <option value="Ubicación">Atención en mi Ubicación 🏠</option>
+            <option value="Domicilio">Domicilio a tu Dirección 📍</option>
+        </select>
+        
+        <label>💅 Sistema a Realizar</label>
         <select id="sistema">
-            <option value="Acrílico Escuplido">Acrílico Escuplido 💅</option>
+            <option value="Semipermanente">Semipermanente 🎀</option>
+            <option value="Tradicional">Tradicional 💅</option>
+            <option value="Acrílico Escuplido">Acrílico Escuplido 💎</option>
             <option value="Soft Gel">Soft Gel ✨</option>
             <option value="Polygel">Polygel 🌸</option>
-            <option value="Semipermanente">Semipermanente 🎀</option>
-            <option value="Kapping">Kapping / Base Rubber 💎</option>
+            <option value="Kapping / Base Rubber">Kapping / Base Rubber 🦄</option>
         </select>
+        
         <button class="btn-guardar" onclick="guardarCita()">💖 Agendar Cita</button>
     </div>
 
@@ -129,9 +161,11 @@
 
     <div class="t-datos">
         <p><b>CLIENTA:</b> <span id="t-nombre"></span></p>
+        <p><b>WHATSAPP:</b> <span id="t-whatsapp" class="t-whatsapp"></span></p>
         <p><b>FECHA:</b> <span id="t-fecha"></span></p>
         <p><b>HORA:</b> <span id="t-hora"></span></p>
         <p><b>SISTEMA:</b> <span id="t-sistema"></span></p>
+        <p><b>ATENCIÓN:</b> <span id="t-atencion" class="t-domicilio"></span></p>
         <p><b>LUGAR:</b> <span id="t-lugar"></span></p>
     </div>
 
@@ -141,7 +175,7 @@
             Gracias por<br>preferirnos,<br>¡te esperamos!
         </div>
     </div>
-    <p style="font-size: 13px; margin-top: 25px; opacity: 0.6;">Mellow Nails Studio 🐭💅</p>
+    <p style="font-size: 14px; margin-top: 30px; opacity: 0.6; font-family: sans-serif;">Mellow Nails Studio 🐭💅</p>
 </div>
 
 <script>
@@ -149,31 +183,35 @@
 
     function guardarCita() {
         const nombre = document.getElementById('nombre').value;
+        const whatsapp = document.getElementById('whatsapp').value;
         const fechaCita = document.getElementById('fechaCita').value;
         const sistema = document.getElementById('sistema').value;
-        const ubicacion = document.getElementById('ubicacion').value || "Nuestro Studio 🎀";
+        const atencion = document.getElementById('atencion').value;
+        const ubicacion = document.getElementById('ubicacion').value || "Mellow Nails Studio 🎀";
 
-        if (!nombre || !fechaCita) return alert("¡Mel! No olvides el nombre o la fecha 🐭");
+        if (!nombre || !fechaCita || !whatsapp) return alert("¡Mel! No olvides el nombre, la fecha o el WhatsApp 🐭");
 
-        citas.push({ id: Date.now(), nombre, fechaCita, sistema, ubicacion });
+        citas.push({ id: Date.now(), nombre, whatsapp, fechaCita, sistema, atencion, ubicacion });
         citas.sort((a, b) => new Date(a.fechaCita) - new Date(b.fechaCita));
         localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
         renderizar();
-        alert("¡Cita agendada! 🌸✨");
+        alert("¡Cita agendada con éxito! 🌸✨");
     }
 
     function imprimirTicket(id) {
         const c = citas.find(cita => cita.id === id);
         
-        // PREGUNTA LA FECHA ANTES DE IMPRIMIR
+        // PREGUNTA LA FECHA ANTES DE IMPRIMIR (por si acaso)
         const nuevaFechaFull = prompt("¿Confirmas la fecha y hora para el ticket?", c.fechaCita);
         
         if (nuevaFechaFull) {
             const f = new Date(nuevaFechaFull);
             document.getElementById('t-nombre').innerText = c.nombre.toUpperCase();
+            document.getElementById('t-whatsapp').innerText = c.whatsapp;
             document.getElementById('t-fecha').innerText = f.toLocaleDateString();
             document.getElementById('t-hora').innerText = f.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
             document.getElementById('t-sistema').innerText = c.sistema;
+            document.getElementById('t-atencion').innerText = c.atencion.toUpperCase();
             document.getElementById('t-lugar').innerText = c.ubicacion;
 
             setTimeout(() => { window.print(); }, 300);
@@ -189,7 +227,9 @@
                 <div class="card">
                     <p style="font-size:12px; color:var(--rosa-fuerte); font-weight:bold;">📅 ${f.toLocaleString()}</p>
                     <h3 style="margin:5px 0; font-size:18px;">${c.nombre}</h3>
-                    <button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 GENERAR TICKET ÚNICO</button>
+                    <p style="font-size:13px; opacity:0.8;">✨ ${c.sistema}</p>
+                    <p style="font-size:12px; color:#25D366;">📱 WA: ${c.whatsapp}</p>
+                    <button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 GENERAR TICKET GIGANTE</button>
                     <button style="color:#ffadad; border:none; background:none; font-size:12px; cursor:pointer; margin-top:10px;" onclick="borrar(${c.id})">Borrar</button>
                 </div>
             `;
@@ -197,7 +237,7 @@
     }
 
     function borrar(id) {
-        if(confirm("¿Borrar esta cita? 🐭")) {
+        if(confirm("¿Segura que quieres borrar esta cita de Mellow Nails? 🐭")) {
             citas = citas.filter(c => c.id !== id);
             localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
             renderizar();
@@ -209,3 +249,4 @@
 
 </body>
 </html>
+
