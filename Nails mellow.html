@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Mellow Nails ✨</title>
+    <style>
+        :root {
+            --rosa-mewi: #ffb7c5;
+            --rosa-fuerte: #ff85a1;
+            --lila-mewi: #d8b4fe;
+            --fondo: #fff5f7;
+            --texto: #5d4d50;
+            --hoy-bg: #f3e8ff;
+        }
+
+        body { background: var(--fondo); font-family: 'Segoe UI', sans-serif; color: var(--texto); padding: 15px; display: flex; flex-direction: column; align-items: center; }
+        .contenedor-app { max-width: 480px; width: 100%; }
+
+        .header-app { text-align: center; margin-bottom: 15px; }
+        .logo-peque { width: 90px; border-radius: 15px; }
+
+        /* Formulario */
+        .formulario-mellow { 
+            background: white; padding: 20px; border-radius: 25px; 
+            box-shadow: 0 8px 20px rgba(255, 183, 197, 0.2); margin-bottom: 25px;
+        }
+        h2 { font-size: 14px; color: var(--rosa-fuerte); text-align: center; text-transform: uppercase; margin-top: 0; }
+        
+        input, select, textarea { 
+            width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 12px; 
+            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 14px;
+        }
+
+        .btn-guardar { 
+            width: 100%; padding: 14px; background: var(--rosa-fuerte); color: white; 
+            border: none; border-radius: 50px; font-weight: 800; cursor: pointer;
+        }
+
+        /* FILTROS DE AGENDA */
+        .filtros-agenda { display: flex; gap: 8px; margin-bottom: 15px; }
+        .btn-filtro { 
+            flex: 1; padding: 10px; border-radius: 12px; border: 2px solid var(--rosa-mewi);
+            background: white; color: var(--rosa-fuerte); font-weight: bold; cursor: pointer; font-size: 12px;
+        }
+        .btn-filtro.activo { background: var(--rosa-fuerte); color: white; border-color: var(--rosa-fuerte); }
+
+        /* LISTA DE CITAS */
+        .lista-cards { display: flex; flex-direction: column; gap: 10px; }
+        .card { 
+            background: white; border-radius: 18px; padding: 15px; 
+            border-left: 6px solid var(--rosa-mewi); box-shadow: 0 3px 10px rgba(0,0,0,0.03);
+        }
+        .card.es-hoy { background: var(--hoy-bg); border-left-color: var(--lila-mewi); }
+        
+        .card h3 { margin: 0; font-size: 16px; color: var(--rosa-fuerte); display: flex; justify-content: space-between; }
+        .info-cita { color: #7c3aed; font-weight: 800; font-size: 13px; margin: 8px 0; background: white; padding: 5px 10px; border-radius: 10px; display: inline-block; }
+        .detalles { font-size: 12px; opacity: 0.8; margin: 0; }
+        
+        .btn-borrar { color: #ffadad; border: none; background: none; font-size: 10px; font-weight: bold; cursor: pointer; margin-top: 10px; padding: 0; }
+    </style>
+</head>
+<body>
+
+<div class="contenedor-app">
+    <div class="header-app">
+        <img src="https://i.postimg.cc/6pFYtnxR/file-00000000eb6c71f59137c9e2eacfeb07.png" class="logo-peque">
+        <h1 style="font-size: 20px; margin: 5px 0;">Agenda de Citas 🐭💅</h1>
+    </div>
+
+    <div class="formulario-mellow">
+        <h2>Nueva Cita</h2>
+        <input type="text" id="nombre" placeholder="Nombre de la clienta">
+        <select id="sistema">
+            <option value="Acrílico">Acrílico</option>
+            <option value="Soft Gel">Soft Gel</option>
+            <option value="Polygel">Polygel</option>
+            <option value="Semipermanente">Semipermanente</option>
+        </select>
+        <input type="datetime-local" id="fechaCita">
+        <textarea id="notas" placeholder="Diseño, largo o notas de salud..." rows="2"></textarea>
+        <button class="btn-guardar" onclick="guardarCita()">✨ AGENDAR CITA</button>
+    </div>
+
+    <div class="filtros-agenda">
+        <button class="btn-filtro activo" id="f-todas" onclick="filtrar('todas')">Todas</button>
+        <button class="btn-filtro" id="f-hoy" onclick="filtrar('hoy')">Hoy 📅</button>
+        <button class="btn-filtro" id="f-manana" onclick="filtrar('manana')">Mañana</button>
+    </div>
+
+    <div class="lista-cards" id="listaCitas"></div>
+</div>
+
+<script>
+    let citas = JSON.parse(localStorage.getItem('mellow_nails_agenda')) || [];
+    let filtroActual = 'todas';
+
+    function guardarCita() {
+        const nombre = document.getElementById('nombre').value;
+        const sistema = document.getElementById('sistema').value;
+        const fechaCita = document.getElementById('fechaCita').value;
+        const notas = document.getElementById('notas').value;
+
+        if (!nombre || !fechaCita) return alert("Pon el nombre y la fecha 🐭");
+
+        citas.push({ id: Date.now(), nombre, sistema, fechaCita, notas });
+        citas.sort((a, b) => new Date(a.fechaCita) - new Date(b.fechaCita));
+        
+        localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
+        document.getElementById('nombre').value = "";
+        document.getElementById('fechaCita').value = "";
+        document.getElementById('notas').value = "";
+        renderizar();
+    }
+
+    function filtrar(tipo) {
+        filtroActual = tipo;
+        document.querySelectorAll('.btn-filtro').forEach(b => b.classList.remove('activo'));
+        document.getElementById('f-' + tipo).classList.add('activo');
+        renderizar();
+    }
+
+    function renderizar() {
+        const lista = document.getElementById('listaCitas');
+        lista.innerHTML = "";
+        
+        const hoy = new Date();
+        const hoyStr = hoy.toISOString().split('T')[0];
+        
+        const manana = new Date();
+        manana.setDate(hoy.getDate() + 1);
+        const mananaStr = manana.toISOString().split('T')[0];
+
+        let filtradas = citas;
+        if (filtroActual === 'hoy') filtradas = citas.filter(c => c.fechaCita.startsWith(hoyStr));
+        if (filtroActual === 'manana') filtradas = citas.filter(c => c.fechaCita.startsWith(mananaStr));
+
+        if (filtradas.length === 0) {
+            lista.innerHTML = '<p style="text-align:center; opacity:0.5; font-size:13px;">No hay citas para mostrar 🐭</p>';
+            return;
+        }
+
+        filtradas.forEach(c => {
+            const fechaObj = new Date(c.fechaCita);
+            const esHoy = c.fechaCita.startsWith(hoyStr);
+            
+            lista.innerHTML += `
+                <div class="card ${esHoy ? 'es-hoy' : ''}">
+                    <h3>${c.nombre} <span>✨</span></h3>
+                    <div class="info-cita">
+                        ⏰ ${fechaObj.toLocaleDateString()} - ${fechaObj.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}
+                    </div>
+                    <p class="detalles"><b>Sistema:</b> ${c.sistema}</p>
+                    <p class="detalles"><b>Notas:</b> ${c.notas || 'Sin notas'}</p>
+                    <button class="btn-borrar" onclick="borrarCita(${c.id})">ELIMINAR CITA</button>
+                </div>
+            `;
+        });
+    }
+
+    function borrarCita(id) {
+        if(confirm("¿Borrar esta cita?")) {
+            citas = citas.filter(c => c.id !== id);
+            localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
+            renderizar();
+        }
+    }
+
+    renderizar();
+</script>
+
+</body>
+</html>
