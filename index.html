@@ -3,249 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mellow Nails Agenda ✨ Pro</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Courier+Prime&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <title>Mellow Nails ✨ Ticket Único</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --rosa-mewi: #ffb7c5;
-            --rosa-fuerte: #ff85a1;
-            --lila-mewi: #d8b4fe;
-            --fondo: #fff5f7;
-            --texto: #5d4d50;
-        }
-
-        /* CONFIGURACIÓN PARA QUE NO SE PASE DE UNA HOJA */
-        @page { size: auto; margin: 0mm; }
-
-        body { background: var(--fondo); font-family: 'Montserrat', sans-serif; color: var(--texto); padding: 15px; display: flex; flex-direction: column; align-items: center; }
-        .contenedor-app { max-width: 450px; width: 100%; }
-
-        .header-app { text-align: center; margin-bottom: 15px; }
+        :root { --rosa-claro: #ffe4eb; --rosa-medio: #ffb7c5; --rosa-fuerte: #ff85a1; --texto: #5d4d50; }
         
-        /* LOGO AESTHETIC EN INICIO CON BORDE Y SOMBRA */
-        .logo-inicio { 
-            width: 120px; height: 120px; border-radius: 50%; 
-            border: 5px solid var(--rosa-mewi); 
-            object-fit: cover; 
-            box-shadow: 0 8px 15px rgba(255, 183, 197, 0.4); 
-            margin-bottom: 10px;
-        }
-        
-        .slogan-inicio { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 26px; margin-top: 8px; font-weight: bold; }
+        /* ESTILOS APP (PANTALLA) */
+        body { background: var(--rosa-claro); font-family: 'Montserrat', sans-serif; color: var(--texto); margin: 0; padding: 15px; display: flex; flex-direction: column; align-items: center; }
+        .contenedor { max-width: 420px; width: 100%; }
+        .header-app { text-align: center; margin-bottom: 20px; }
+        .logo-app { width: 90px; height: 90px; border-radius: 50%; border: 3px solid white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .slogan-app { font-family: 'Dancing Script', cursive; color: var(--rosa-fuerte); font-size: 22px; margin-top: 8px; font-weight: bold; }
+        .seccion-form { background: white; padding: 20px; border-radius: 25px; border: 1.5px solid var(--rosa-medio); box-shadow: 0 8px 20px rgba(0,0,0,0.05); }
+        label { font-size: 10px; font-weight: 800; color: var(--rosa-fuerte); display: block; margin-top: 10px; text-transform: uppercase; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 4px; border-radius: 10px; border: 1.5px solid var(--rosa-medio); box-sizing: border-box; font-family: 'Montserrat'; font-size: 13px; outline: none; }
+        .btn-principal { width: 100%; padding: 16px; background: var(--rosa-fuerte); color: white; border: none; border-radius: 50px; font-weight: 800; cursor: pointer; margin-top: 20px; text-transform: uppercase; font-size: 13px; }
+        .card-cita { background: white; padding: 15px; border-radius: 18px; border-left: 8px solid var(--rosa-medio); margin-top: 15px; text-align: left; }
+        .btn-ticket { background: white; color: var(--rosa-fuerte); border: 2px solid var(--rosa-fuerte); padding: 8px; border-radius: 12px; cursor: pointer; font-weight: 800; width: 100%; margin-top: 10px; font-size: 11px; }
 
-        .formulario-mellow { 
-            background: white; padding: 25px; border-radius: 30px; 
-            box-shadow: 0 8px 25px rgba(255, 183, 197, 0.2); margin-top: 15px; margin-bottom: 25px;
-            border: 1px solid var(--rosa-mewi);
-        }
-        
-        input, select { 
-            width: 100%; padding: 14px; margin-bottom: 10px; border-radius: 15px; 
-            border: 1.5px solid var(--rosa-mewi); outline: none; box-sizing: border-box; font-size: 16px; color: var(--texto);
-        }
-        
-        label { font-size: 14px; color: var(--rosa-fuerte); font-weight: bold; margin-bottom: 5px; display: block; text-align: left; padding-left: 10px; }
-
-        .btn-guardar { 
-            width: 100%; padding: 16px; background: var(--rosa-fuerte); color: white; 
-            border: none; border-radius: 50px; font-weight: 800; cursor: pointer; text-transform: uppercase; font-size: 15px; letter-spacing: 1px;
-        }
-
-        .card { background: white; border-radius: 20px; padding: 18px; border-left: 8px solid var(--rosa-mewi); margin-bottom: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
-        .btn-ticket { background: var(--fondo); color: var(--rosa-fuerte); border: 2px dashed var(--rosa-fuerte); padding: 12px; border-radius: 15px; font-size: 13px; font-weight: 800; cursor: pointer; width: 100%; margin-top: 10px; }
-
-        /* --- TICKET GIGANTE AJUSTADO PARA UNA SOLA HOJA --- */
-        #ticket-imprimir { 
-            display: none; 
-            width: 130mm; /* Súper ancho para que se vea grande */
-            background: #fff0f3; 
-            color: #333; 
-            padding: 50px; 
-            border: 5px solid #ffb7c5;
-            border-radius: 40px;
-            box-sizing: border-box;
-        }
+        /* --- TICKET PREMIUM (GRANDE Y ESTRICTAMENTE UNA HOJA) --- */
+        #ticket-real { display: none; }
         
         @media print {
+            /* Forzamos al navegador a ignorar todo excepto el ticket */
+            @page { size: auto; margin: 0; }
+            html, body { height: 100%; width: 100%; margin: 0 !important; padding: 0 !important; overflow: hidden !important; }
             body * { visibility: hidden; }
-            #ticket-imprimir, #ticket-imprimir * { visibility: visible; }
-            #ticket-imprimir { 
-                display: block !important; 
-                position: absolute; left: 50%; top: 10mm; 
-                transform: translateX(-50%);
-                text-align: center;
-                page-break-inside: avoid;
-            }
-            .t-header { font-family: 'Dancing Script', cursive; font-size: 65px; color: #ff85a1; margin-bottom: 10px; }
-            .t-slogan { font-family: 'Dancing Script', cursive; font-size: 28px; color: #ff85a1; margin-bottom: 25px; display: block; }
-            .t-sub { font-size: 14px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 30px; display: block; font-weight: bold; }
-            
-            .t-datos { 
-                font-family: 'Courier Prime', monospace; 
-                text-align: left; 
-                font-size: 22px; /* Letra muy grande */
-                background: white; 
-                padding: 40px; 
-                border-radius: 25px;
-                border: 3px solid #ffdae0;
-                line-height: 2;
-            }
-            .t-whatsapp { color: #25D366; font-weight: bold; font-family: sans-serif; } /* Color WhatsApp */
-            .t-domicilio { color: #be185d; font-weight: bold; } /* Color Domicilio */
 
-            .t-footer-container { 
-                display: flex; 
-                align-items: center; 
-                justify-content: center; 
-                margin-top: 40px; 
-                gap: 30px;
+            #ticket-real { 
+                display: block !important; 
+                visibility: visible !important;
+                position: fixed; /* Posición fija para evitar saltos de página */
+                left: 0; right: 0; top: 0;
+                margin: auto;
+                width: 105mm; /* Tamaño grandecito pro */
+                padding: 35px;
+                background-color: #ffeef2 !important; 
+                border: 8px double var(--rosa-fuerte) !important;
+                border-radius: 20px;
+                box-sizing: border-box;
+                -webkit-print-color-adjust: exact; /* Asegura que el fondo rosa se imprima */
             }
-            
-            /* IMAGEN FINAL EN TICKET GRANDE Y CENTRADA */
-            .t-imagen-final { width: 150px; height: 150px; border-radius: 20px; object-fit: cover; border: 4px solid #ffb7c5; }
-            .t-gracias { font-family: 'Dancing Script', cursive; font-size: 38px; color: #ff85a1; text-align: left; line-height: 1.1; }
-            .separador-corazon { color: #ffb7c5; margin: 25px 0; font-size: 30px; }
+            #ticket-real * { visibility: visible !important; }
+
+            .t-center { text-align: center; }
+            .t-logo { width: 110px; height: 110px; border-radius: 50%; border: 3px solid white; margin-bottom: 10px; }
+            .t-title { font-size: 32px; color: #d05b76; margin: 0; font-weight: 800; letter-spacing: 1px; }
+            .t-slogan { font-size: 19px; color: #5d4d50; font-weight: bold; margin: 5px 0; font-family: 'Dancing Script', cursive; }
+            .t-turno-box { background: var(--rosa-fuerte); color: white; padding: 12px 30px; border-radius: 15px; display: inline-block; font-size: 26px; font-weight: 800; margin: 15px 0; }
+            .t-info { font-size: 15px; text-align: left; line-height: 1.6; color: #333; }
+            .t-item { margin-bottom: 8px; border-bottom: 1px dashed var(--rosa-medio); padding-bottom: 4px; }
+            .t-item b { color: #d05b76; }
+            .t-sistema-box { background: white; border: 1.5px solid var(--rosa-medio); padding: 15px; border-radius: 12px; margin-top: 10px; }
+            .t-politica { font-size: 12px; margin-top: 25px; text-align: center; color: #c00000; font-weight: bold; line-height: 1.4; }
+            .t-footer { margin-top: 30px; font-size: 13px; font-weight: bold; color: #d05b76; }
         }
     </style>
 </head>
 <body>
 
-<div class="contenedor-app">
+<div class="contenedor">
     <div class="header-app">
-        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="logo-inicio">
-        <h1 style="font-size: 28px; color: var(--rosa-fuerte); margin: 10px 0 0 0; font-weight: bold;">Mellow Nails</h1>
-        <div class="slogan-inicio">Uñitas tiernas para manos que brillan ✨💖</div>
+        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="logo-app">
+        <div class="slogan-app">Mellow Nails 🐭🎀</div>
     </div>
 
-    <div class="formulario-mellow">
-        <label>Nombre de la clienta</label>
-        <input type="text" id="nombre" placeholder="Ej: Ana Pérez">
-        
-        <label>Número de WhatsApp</label>
-        <input type="tel" id="whatsapp" placeholder="Ej: 3001234567" required>
-        
-        <label>📍 Ubicación (Dirección o Local)</label>
-        <input type="text" id="ubicacion" placeholder="Ej: Calle 10 #20-30">
-        
-        <label>📅 Fecha y Hora de la Cita</label>
-        <input type="datetime-local" id="fechaCita">
-        
-        <label>💖 Tipo de Atención</label>
-        <select id="atencion">
-            <option value="Ubicación">Atención en mi Ubicación 🏠</option>
-            <option value="Domicilio">Domicilio a tu Dirección 📍</option>
-        </select>
-        
-        <label>💅 Sistema a Realizar</label>
+    <div class="seccion-form">
+        <h2>✨ Agendar Cita Premium</h2>
+        <label>💖 Nombre</label><input type="text" id="nombre">
+        <label>📱 WhatsApp</label><input type="tel" id="whatsapp">
+        <label>📅 Fecha/Hora</label><input type="datetime-local" id="fecha">
+        <label>💅 Sistema</label>
         <select id="sistema">
-            <option value="Semipermanente">Semipermanente 🎀</option>
-            <option value="Tradicional">Tradicional 💅</option>
-            <option value="Acrílico Escuplido">Acrílico Escuplido 💎</option>
-            <option value="Soft Gel">Soft Gel ✨</option>
-            <option value="Polygel">Polygel 🌸</option>
-            <option value="Kapping / Base Rubber">Kapping / Base Rubber 🦄</option>
+            <option value="Mantenimiento de uña 🛠️">Mantenimiento de uña 🛠️</option>
+            <option value="Soft Gel 🌸">Soft Gel 🌸</option>
+            <option value="Acrílico (Tips) 💎">Acrílico (Tips) 💎</option>
+            <option value="Acrílico (Escuplido) 💎">Acrílico (Escuplido) 💎</option>
+            <option value="Polygel (Tip) ✨">Polygel (Tip) ✨</option>
+            <option value="Polygel (Escuplido) ✨">Polygel (Escuplido) ✨</option>
+            <option value="Dipping 🍭">Dipping 🍭</option>
+            <option value="Base Rubber 🦄">Base Rubber 🦄</option>
+            <option value="Baño en Acrílico 🛡️">Baño en Acrílico 🛡️</option>
+            <option value="Retiros 🗑️">Retiros 🗑️</option>
+            <option value="Tradicional ✨">Tradicional ✨</option>
+            <option value="Semipermanente 🎀">Semipermanente 🎀</option>
+            <option value="Otros Sistemas 🌈">Otros Sistemas 🌈</option>
         </select>
-        
-        <button class="btn-guardar" onclick="guardarCita()">💖 Agendar Cita</button>
+        <label>📍 Lugar</label>
+        <select id="lugar"><option value="Mellow Nails Studio 🏠">Estudio 🏠</option><option value="A domicilio 📍">Domicilio 📍</option></select>
+        <input type="text" id="direccion" placeholder="Dirección">
+        <label>📝 Notas de Diseño</label><textarea id="notas" placeholder="Ej: Corazones, brillos..."></textarea>
+        <button class="btn-principal" onclick="agendar()">💖 CONFIRMAR AGENDAMIENTO</button>
     </div>
-
-    <div class="lista-cards" id="listaCitas"></div>
+    <div id="listaCitas"></div>
 </div>
 
-<div id="ticket-imprimir">
-    <div class="t-header">Mellow Nails</div>
-    <div class="t-slogan">"Uñitas tiernas para manos que brillan" ✨💖</div>
-    <span class="t-sub">Comprobante de Cita</span>
-    
-    <div class="separador-corazon">🌸 • 🎀 • 🌸</div>
-
-    <div class="t-datos">
-        <p><b>CLIENTA:</b> <span id="t-nombre"></span></p>
-        <p><b>WHATSAPP:</b> <span id="t-whatsapp" class="t-whatsapp"></span></p>
-        <p><b>FECHA:</b> <span id="t-fecha"></span></p>
-        <p><b>HORA:</b> <span id="t-hora"></span></p>
-        <p><b>SISTEMA:</b> <span id="t-sistema"></span></p>
-        <p><b>ATENCIÓN:</b> <span id="t-atencion" class="t-domicilio"></span></p>
-        <p><b>LUGAR:</b> <span id="t-lugar"></span></p>
+<div id="ticket-real">
+    <div class="t-center">
+        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="t-logo">
+        <h1 class="t-title">MELLOW NAILS</h1>
+        <p class="t-slogan">Uñitas tiernas para manos que brillan 🐭🎀</p>
+        <div class="t-turno-box">TURNO: <span id="t-turno"></span></div>
     </div>
 
-    <div class="t-footer-container">
-        <img src="https://i.postimg.cc/ydGG5dyZ/c43685be68bf2cc765f86021f2733fb2-(1).jpg" class="t-imagen-final">
-        <div class="t-gracias">
-            Gracias por<br>preferirnos,<br>¡te esperamos!
+    <div class="t-info">
+        <div class="t-item"><b>CLIENTA:</b> <span id="t-nombre"></span></div>
+        <div class="t-item"><b>WHATSAPP:</b> <span id="t-whatsapp"></span></div>
+        <div class="t-item"><b>FECHA:</b> <span id="t-fecha"></span></div>
+        
+        <p style="margin: 15px 0 5px 0; font-weight: 800; color:#d05b76;">SISTEMA AGENDADO:</p>
+        <div class="t-sistema-box">
+            <span id="t-sistema" style="font-weight: 700; font-size: 16px;"></span><br>
+            <small id="t-notas" style="font-style: italic; color:#666;"></small>
         </div>
+
+        <div class="t-item" style="margin-top: 15px;"><b>LUGAR:</b> <span id="t-lugar"></span></div>
+        <div class="t-item"><b>DIRECCIÓN:</b> <span id="t-direccion"></span></div>
     </div>
-    <p style="font-size: 14px; margin-top: 30px; opacity: 0.6; font-family: sans-serif;">Mellow Nails Studio 🐭💅</p>
+
+    <div class="t-politica">
+        ⚠️ AVISO: Cancelaciones con menos de 2h de aviso tienen recargo.<br>¡Valora mi arte! 🐭💖
+    </div>
+
+    <div class="t-center t-footer">
+        Sigue mi arte en @MellowNails ✨<br>
+        Bogotá D.C. - Mewi Style 🎀
+    </div>
 </div>
 
 <script>
-    let citas = JSON.parse(localStorage.getItem('mellow_nails_agenda')) || [];
-
-    function guardarCita() {
-        const nombre = document.getElementById('nombre').value;
-        const whatsapp = document.getElementById('whatsapp').value;
-        const fechaCita = document.getElementById('fechaCita').value;
-        const sistema = document.getElementById('sistema').value;
-        const atencion = document.getElementById('atencion').value;
-        const ubicacion = document.getElementById('ubicacion').value || "Mellow Nails Studio 🎀";
-
-        if (!nombre || !fechaCita || !whatsapp) return alert("¡Mel! No olvides el nombre, la fecha o el WhatsApp 🐭");
-
-        citas.push({ id: Date.now(), nombre, whatsapp, fechaCita, sistema, atencion, ubicacion });
-        citas.sort((a, b) => new Date(a.fechaCita) - new Date(b.fechaCita));
-        localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
-        renderizar();
-        alert("¡Cita agendada con éxito! 🌸✨");
+    let db = JSON.parse(localStorage.getItem('mellow_vFinal')) || [];
+    function agendar() {
+        const c = { id: Date.now(), n: document.getElementById('nombre').value, w: document.getElementById('whatsapp').value, f: document.getElementById('fecha').value, s: document.getElementById('sistema').value, l: document.getElementById('lugar').value, d: document.getElementById('direccion').value || "Estudio Principal", notas: document.getElementById('notas').value || "Diseño a elección" };
+        if(!c.n || !c.f) return alert("¡Mel! Pon nombre y fecha 🐭");
+        db.push(c); localStorage.setItem('mellow_vFinal', JSON.stringify(db));
+        render(); alert("¡Cita agendada! 💅🌸");
+        limpiarForm();
     }
-
     function imprimirTicket(id) {
-        const c = citas.find(cita => cita.id === id);
-        
-        // PREGUNTA LA FECHA ANTES DE IMPRIMIR (por si acaso)
-        const nuevaFechaFull = prompt("¿Confirmas la fecha y hora para el ticket?", c.fechaCita);
-        
-        if (nuevaFechaFull) {
-            const f = new Date(nuevaFechaFull);
-            document.getElementById('t-nombre').innerText = c.nombre.toUpperCase();
-            document.getElementById('t-whatsapp').innerText = c.whatsapp;
-            document.getElementById('t-fecha').innerText = f.toLocaleDateString();
-            document.getElementById('t-hora').innerText = f.toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-            document.getElementById('t-sistema').innerText = c.sistema;
-            document.getElementById('t-atencion').innerText = c.atencion.toUpperCase();
-            document.getElementById('t-lugar').innerText = c.ubicacion;
-
-            setTimeout(() => { window.print(); }, 300);
-        }
+        const c = db.find(x => x.id === id);
+        const t = db.indexOf(c) + 1;
+        document.getElementById('t-turno').innerText = t < 10 ? "0" + t : t;
+        document.getElementById('t-nombre').innerText = c.n;
+        document.getElementById('t-whatsapp').innerText = c.w;
+        document.getElementById('t-fecha').innerText = new Date(c.f).toLocaleString('es-CO', { dateStyle: 'full', timeStyle: 'short' });
+        document.getElementById('t-sistema').innerText = c.s;
+        document.getElementById('t-lugar').innerText = c.l;
+        document.getElementById('t-direccion').innerText = c.d;
+        document.getElementById('t-notas').innerText = c.notas;
+        setTimeout(() => { window.print(); }, 200);
     }
-
-    function renderizar() {
-        const lista = document.getElementById('listaCitas');
-        lista.innerHTML = "";
-        citas.forEach(c => {
-            const f = new Date(c.fechaCita);
-            lista.innerHTML += `
-                <div class="card">
-                    <p style="font-size:12px; color:var(--rosa-fuerte); font-weight:bold;">📅 ${f.toLocaleString()}</p>
-                    <h3 style="margin:5px 0; font-size:18px;">${c.nombre}</h3>
-                    <p style="font-size:13px; opacity:0.8;">✨ ${c.sistema}</p>
-                    <p style="font-size:12px; color:#25D366;">📱 WA: ${c.whatsapp}</p>
-                    <button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 GENERAR TICKET GIGANTE</button>
-                    <button style="color:#ffadad; border:none; background:none; font-size:12px; cursor:pointer; margin-top:10px;" onclick="borrar(${c.id})">Borrar</button>
-                </div>
-            `;
+    function render() {
+        const lista = document.getElementById('listaCitas'); lista.innerHTML = "";
+        db.forEach((c, i) => {
+            lista.innerHTML += `<div class="card-cita"><h3>${c.n} 🌸</h3><p>${c.s}</p><button class="btn-ticket" onclick="imprimirTicket(${c.id})">📄 GENERAR TICKET PREMIUM</button></div>`;
         });
     }
-
-    function borrar(id) {
-        if(confirm("¿Segura que quieres borrar esta cita de Mellow Nails? 🐭")) {
-            citas = citas.filter(c => c.id !== id);
-            localStorage.setItem('mellow_nails_agenda', JSON.stringify(citas));
-            renderizar();
-        }
+    function limpiarForm() {
+        document.getElementById('nombre').value = ""; document.getElementById('whatsapp').value = ""; document.getElementById('fecha').value = ""; document.getElementById('direccion').value = ""; document.getElementById('notas').value = "";
     }
-
-    renderizar();
+    render();
 </script>
-
 </body>
 </html>
